@@ -48,7 +48,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     AppRoutingModule
   ],
   providers: [
-    DishService
+    DishService,
+    PromotionService,
+    LeaderService
   ],
   bootstrap: [AppComponent]
 })
