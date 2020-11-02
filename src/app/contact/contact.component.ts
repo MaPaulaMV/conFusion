@@ -74,7 +74,7 @@ export class ContactComponent implements OnInit {
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
-      telnum: '',
+      telnum: 0,
       email: '',
       agree: false,
       contacttype: 'None',
