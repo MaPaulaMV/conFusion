@@ -22,6 +22,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   newComment: Comment;
+  errMess: string;
 
   @ViewChild('fform') commentsFormDirective;
   commentsForm: FormGroup;
@@ -112,7 +113,8 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice
       .getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+      errmess => this.errMess = <any>errmess);
   }
 
   setPrevNext(dishId: string) {
