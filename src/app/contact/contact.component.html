@@ -38,9 +38,8 @@
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [hidden]="feedback" [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -89,6 +88,26 @@
       <button type="submit" mat-button class="background-primary text-floral-white"
         [disabled]="feedbackForm.invalid">Submit</button>
     </form>
+  </div>
+
+  <div fxFlex *ngIf="newFeedback" [@expand]>
+    <h3>Send us your Feedback</h3>
+    <p>First Name: {{newFeedback.firstname}}</p>
+    <p>Last Name: {{newFeedback.lastname}}</p>
+    <p>Tel. Number: {{newFeedback.telnum}}</p>
+    <p>Email: {{newFeedback.email}}</p>
+    <p>Contact You?: {{newFeedback.agree}}</p>
+    <p>How?: {{newFeedback.contacttype}}</p>
+    <p>Feedback: {{newFeedback.message}}</p>
+  </div>
+
+  <div fxFlex [@visibility]="visibility">
+    <h4>Submitting Form</h4> <mat-spinner></mat-spinner>
+  </div>
+
+  <div fxFlex *ngIf="errMess" [@expand]>
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 
 </div>
